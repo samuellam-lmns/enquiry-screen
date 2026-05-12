@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>{{ENTITY_NAME}} — Investor Screen · Lumonus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+<style>
+  /* ---------- Tokens ---------- */
+  :root{
+    --navy:#081E43;
+    --navy-2:#0d2a5a;
+    --purple:#AAA1FD;
+    --purple-light:#F6F5FE;
+    --teal:#3EA7B2;
+    --coral:#FB6A76;
+    --amber:#F59E0B;
+    --purple-text:#5A4ED8;
+    --off:#FAFAFF;
+    --white:#fff;
+    --rule: rgba(8,30,67,.10);
+    --rule-dark: rgba(255,255,255,.14);
+    --shadow-lg: rgba(170,161,253,.36) 0 2px 30px 0;
+    --ease: cubic-bezier(0.4,0,0.2,1);
+    --ease-arrive: cubic-bezier(0,0,0.2,1);
+    --r-sm:4px; --r-md:8px; --r-lg:8px; --r-xl:8px;
+    --maxw: 1200px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  *,*::before,*::after{font-family:"Poppins",system-ui,sans-serif !important}
+  i.ph, i[class*="ph-"], i.ph::before, i[class*="ph-"]::before{font-family:"Phosphor" !important}
+  body{font-family:"Poppins",system-ui,sans-serif;background:var(--off);color:var(--navy);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-weight:400;line-height:1.6}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--purple);color:var(--navy)}
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+  @media(max-width:640px){.wrap{padding:0 20px}}
+
+  /* ---------- Topbar ---------- */
+  .topbar{background:rgba(8,30,67,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#fff;border-bottom:1px solid var(--rule-dark)}
+  .topbar-inner{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+  .brand{font-size:15px;font-weight:600;letter-spacing:-.01em;color:#fff}
+  .topbar-tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:100px 0 120px;isolation:isolate}
+  .hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:800px;height:800px;border-radius:50%;background:linear-gradient(45deg,var(--coral),var(--purple) 35%,var(--teal) 70%,var(--navy));filter:blur(100px);opacity:.4;z-index:-1;animation:drift 14s ease-in-out infinite alternate}
+  .hero::after{content:"";position:absolute;inset:auto auto -40% -20%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,var(--purple) 0%,transparent 60%);filter:blur(80px);opacity:.3;z-index:-1}
+  @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(-40px,30px) scale(1.05)}}
+  @media(max-width:640px){.hero::before{opacity:.2}.hero::after{opacity:.15}}
+  .s-eyebrow{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--navy)}
+  .hero .s-eyebrow{color:var(--purple)}
+  section.s.dark .s-eyebrow{color:var(--purple)}
+  h1.display{font-weight:300;font-size:clamp(40px,5.5vw,68px);line-height:1.05;letter-spacing:-.015em;margin:20px 0 20px}
+  h1.display em{font-style:normal;color:var(--purple)}
+  .lede{font-weight:300;font-size:clamp(17px,1.8vw,20px);line-height:1.6;color:rgba(255,255,255,.75);max-width:58ch;margin:0}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:32px 56px;margin-top:56px;padding-top:28px;border-top:1px solid var(--rule-dark)}
+  .hero-meta .m-label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+  .hero-meta .m-value{font-weight:300;font-size:17px;margin-top:4px;color:#fff}
+
+  /* ---------- Verdict badge ---------- */
+  /* VERDICT_CLASS: verdict-red | verdict-amber | verdict-green */
+  .verdict-badge{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:10px 18px;border-radius:1000px;
+    font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  }
+  .verdict-badge .vdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .verdict-red{background:rgba(251,106,118,.18);border:1px solid rgba(251,106,118,.45);color:#FB6A76}
+  .verdict-red .vdot{background:#FB6A76;box-shadow:0 0 10px rgba(251,106,118,.7)}
+  .verdict-amber{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.4);color:#F59E0B}
+  .verdict-amber .vdot{background:#F59E0B;box-shadow:0 0 10px rgba(245,158,11,.6)}
+  .verdict-green{background:rgba(62,167,178,.15);border:1px solid rgba(62,167,178,.4);color:#3EA7B2}
+  .verdict-green .vdot{background:#3EA7B2;box-shadow:0 0 10px rgba(62,167,178,.6)}
+
+  /* Fit badge — sits alongside verdict badge in hero-meta */
+  .fit-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 18px;border-radius:1000px;
+    font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    background:rgba(170,161,253,.12);border:1px solid rgba(170,161,253,.25);color:var(--purple);
+  }
+
+  /* ---------- Sections ---------- */
+  section.s{padding:96px 0;border-top:1px solid var(--rule);background:#fff}
+  section.s.dark{background:var(--navy);color:#fff;border-top-color:var(--rule-dark)}
+  section.s.tinted{background:#FAFAFF;border-top-color:transparent}
+  section.s.dark .s-lede{color:rgba(255,255,255,.75)}
+  h2{font-weight:300;font-size:clamp(30px,3.8vw,44px);line-height:1.1;letter-spacing:-.01em;margin:12px 0 18px;max-width:22ch;text-wrap:balance}
+  .s-lede{font-weight:300;font-size:18px;line-height:1.6;max-width:60ch;color:inherit;opacity:.85}
+  h3{font-weight:400;font-size:22px;line-height:1.35;margin:0 0 10px;letter-spacing:-.005em}
+  h4{font-weight:600;font-size:16px;line-height:1.4;margin:0 0 6px}
+  p{margin:0 0 12px}
+  ul{margin:0;padding:0;list-style:none}
+
+  /* ---------- Entity snapshot ---------- */
+  .snapshot-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:40px}
+  @media(max-width:880px){.snapshot-grid{grid-template-columns:1fr;gap:40px}}
+  .snapshot-prose p{font-weight:300;font-size:17px;line-height:1.7;color:rgba(8,30,67,.85)}
+
+  /* ---------- Stats 2×2 ---------- */
+  .stat-row{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--rule);border-radius:var(--r-xl);overflow:hidden}
+  .stat{padding:28px 28px 24px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .stat:nth-child(2n){border-right:none}
+  .stat:nth-last-child(-n+2){border-bottom:none}
+  .stat .v{font-weight:300;font-size:36px;line-height:1.05;letter-spacing:-.02em;color:var(--navy)}
+  .stat .l{font-size:13px;color:rgba(8,30,67,.6);margin-top:6px;line-height:1.4}
+
+  /* ---------- Quote banner ---------- */
+  .proposal-banner{margin-top:40px;padding:36px 40px;border-radius:var(--r-xl);background:var(--navy);color:#fff;position:relative;overflow:hidden;isolation:isolate}
+  .proposal-banner::before{content:"";position:absolute;inset:-40% -10% auto auto;width:500px;height:500px;border-radius:50%;background:linear-gradient(45deg,var(--coral),var(--purple) 50%,var(--teal));filter:blur(80px);opacity:.35;z-index:-1}
+  .proposal-banner .pb-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:14px}
+  .proposal-banner blockquote{margin:0;font-weight:300;font-size:clamp(20px,2.2vw,26px);line-height:1.45;letter-spacing:-.01em;color:#fff;max-width:70ch}
+  .proposal-banner blockquote strong{font-weight:500;color:var(--purple)}
+
+  /* ---------- Findings tiles ---------- */
+  /* Used for summary of most significant per-layer findings */
+  .findings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px}
+  @media(max-width:760px){.findings-grid{grid-template-columns:1fr}}
+  .finding-tile{background:transparent;border:1px solid var(--rule);border-radius:var(--r-xl);padding:32px;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .finding-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .finding-tile .ic{font-size:28px;color:var(--navy);line-height:1;margin-bottom:16px;display:block}
+  .finding-tile .ft-tag{display:block;margin-bottom:10px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--navy)}
+  .finding-tile h4{margin:0 0 8px;font-weight:500;font-size:17px;letter-spacing:-.005em;line-height:1.3;color:var(--navy)}
+  .finding-tile p{margin:0;font-size:14px;line-height:1.6;color:rgba(8,30,67,.72)}
+  .finding-tile p a{color:var(--purple-text);text-decoration:underline;text-underline-offset:2px;word-break:break-all}
+  /* Status variants — add class to .finding-tile */
+  .finding-ok{border-color:rgba(62,167,178,.3);background:rgba(62,167,178,.04)}
+  .finding-ok .ft-tag{color:var(--teal)}
+  .finding-ok .ic{color:var(--teal)}
+  .finding-warn{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.04)}
+  .finding-warn .ft-tag{color:#B45309}
+  .finding-warn .ic{color:#F59E0B}
+  .finding-fail{border-color:rgba(251,106,118,.35);background:rgba(251,106,118,.04)}
+  .finding-fail .ft-tag{color:#B91C1C}
+  .finding-fail .ic{color:#FB6A76}
+
+  /* ---------- Red flags list ---------- */
+  /* Numbered list. If no red flags, omit this section entirely. */
+  .flags{display:grid;gap:0;margin-top:40px;border-top:1px solid rgba(251,106,118,.25)}
+  .flag{display:flex;gap:20px;align-items:flex-start;padding:20px 0;border-bottom:1px solid rgba(251,106,118,.15)}
+  .flag:last-child{border-bottom:none}
+  .flag .f-num{font-weight:700;font-size:13px;color:#FB6A76;width:28px;flex-shrink:0;padding-top:2px;letter-spacing:.03em}
+  .flag .f-body h4{font-weight:600;font-size:15px;color:var(--navy);margin:0 0 4px}
+  .flag .f-body p{margin:0;font-size:14px;line-height:1.6;color:rgba(8,30,67,.72)}
+  .flag .f-body p a{color:var(--purple-text);text-decoration:underline;text-underline-offset:2px}
+  /* If all-clear: */
+  .flags-clear{margin-top:32px;padding:20px 24px;border-radius:var(--r-xl);background:rgba(62,167,178,.07);border:1px solid rgba(62,167,178,.25);font-size:15px;color:var(--navy);display:flex;gap:14px;align-items:center}
+  .flags-clear i{color:var(--teal);font-size:22px;flex-shrink:0}
+
+  /* ---------- Cross-check table ---------- */
+  .xcheck-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:14px}
+  .xcheck-table th{text-align:left;padding:10px 14px;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:rgba(8,30,67,.5);border-bottom:2px solid var(--rule)}
+  .xcheck-table td{padding:12px 14px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.5}
+  .xcheck-table td:first-child{font-weight:500;color:var(--navy);max-width:260px}
+  .xcheck-table td a{color:var(--purple-text);text-decoration:underline;text-underline-offset:2px;word-break:break-all}
+  .xcheck-table tr:last-child td{border-bottom:none}
+  .status-ok{color:var(--teal);font-weight:600}
+  .status-warn{color:#B45309;font-weight:600}
+  .status-fail{color:#B91C1C;font-weight:600}
+  .status-none{color:rgba(8,30,67,.45);font-style:italic}
+
+  /* ---------- Qualifying question ---------- */
+  .q-banner{margin-top:40px;padding:28px 32px;border-radius:var(--r-xl);background:linear-gradient(135deg,rgba(170,161,253,.15),rgba(62,167,178,.08));border:1px solid rgba(170,161,253,.3);display:flex;gap:20px;align-items:flex-start}
+  .q-banner .q-tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--purple-text);flex-shrink:0;padding-top:3px}
+  .q-banner p{margin:0;font-weight:400;font-size:16px;line-height:1.55;color:var(--navy)}
+  .q-banner p strong{font-weight:600}
+
+  /* ---------- Recommendation (CTA) ---------- */
+  .cta-section{background:var(--navy);color:#fff;padding:100px 0;position:relative;overflow:hidden;isolation:isolate}
+  .cta-section::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(251,106,118,.22),transparent 50%),radial-gradient(circle at 20% 80%,rgba(170,161,253,.22),transparent 50%);pointer-events:none}
+  .cta-inner{position:relative;max-width:640px}
+  .cta-inner h2{margin:14px 0 20px;font-weight:300;font-size:clamp(32px,4.5vw,52px);letter-spacing:-.015em;max-width:none}
+  .cta-inner p{font-weight:300;font-size:17px;color:rgba(255,255,255,.72);margin:0 0 20px;max-width:52ch}
+
+  /* ---------- Footer ---------- */
+  footer{background:#020c20;color:rgba(255,255,255,.5);padding:28px 0;font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  footer .footer-brand{font:inherit;letter-spacing:0;color:inherit;margin:0}
+
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease-arrive),transform .6s var(--ease-arrive)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero::before{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- Topbar -->
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a href="#" class="brand" aria-label="Lumonus"><svg height="28" viewBox="0 0 380 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block"><path d="M126.525 97.0006H138.889V102.863H119V66H126.525V97.0006Z" fill="#FAFAFF"/><path d="M171.784 73V102.258H164.205V98.5607C163.238 99.8276 161.965 100.831 160.388 101.57C158.847 102.274 157.163 102.627 155.336 102.627C153.007 102.627 150.946 102.151 149.154 101.201C147.362 100.215 145.947 98.7898 144.908 96.9229C143.905 95.0218 143.403 92.7689 143.403 90.1628V73H150.928V89.1072C150.928 91.431 151.519 93.227 152.703 94.494C153.885 95.7268 155.498 96.3419 157.541 96.3419C159.583 96.3419 161.249 95.7255 162.432 94.494C163.614 93.227 164.206 91.431 164.206 89.1072V73H171.786H171.784Z" fill="#FAFAFF"/><path d="M216.19 73.0013C219.846 73.0013 222.785 74.11 225.005 76.3288C227.263 78.5121 228.391 81.5751 228.391 85.5177V102.682H220.866V86.5214C220.866 84.233 220.274 82.4902 219.092 81.2928C217.909 80.06 216.296 79.4449 214.253 79.4449C212.211 79.4449 210.58 80.0613 209.362 81.2928C208.18 82.4902 207.588 84.233 207.588 86.5214V102.682H200.063V86.5214C200.063 84.233 199.471 82.4902 198.288 81.2928C197.106 80.06 195.493 79.4449 193.45 79.4449C191.408 79.4449 189.724 80.0613 188.505 81.2928C187.323 82.4902 186.731 84.233 186.731 86.5214V102.682H179.206V73.4227H186.731V76.9616C187.698 75.7288 188.935 74.7606 190.439 74.0569C191.98 73.3531 193.664 73 195.492 73C197.82 73 199.899 73.4924 201.728 74.4783C203.555 75.4289 204.971 76.8021 205.974 78.5982C206.941 76.9085 208.339 75.5529 210.167 74.5315C212.03 73.5101 214.037 73 216.188 73L216.19 73.0013Z" fill="#FAFAFF"/><path d="M248.757 103.208C245.889 103.208 243.311 102.592 241.017 101.36C238.723 100.093 236.913 98.3151 235.588 96.0268C234.298 93.7384 233.652 91.0981 233.652 88.1048C233.652 85.1114 234.315 82.4712 235.641 80.1828C237.002 77.8944 238.848 76.1339 241.178 74.9011C243.507 73.6341 246.105 73 248.971 73C251.838 73 254.436 73.6341 256.766 74.9011C259.095 76.1339 260.923 77.8932 262.249 80.1828C263.611 82.4712 264.292 85.1114 264.292 88.1048C264.292 91.0981 263.593 93.7384 262.195 96.0268C260.833 98.3151 258.97 100.093 256.605 101.36C254.275 102.593 251.66 103.208 248.757 103.208ZM248.757 96.7659C250.119 96.7659 251.39 96.4495 252.573 95.8154C253.791 95.1458 254.76 94.1611 255.475 92.8575C256.192 91.5551 256.551 89.9704 256.551 88.1048C256.551 85.3228 255.799 83.1939 254.293 81.7143C252.824 80.2005 251.015 79.4436 248.864 79.4436C246.713 79.4436 244.904 80.2005 243.436 81.7143C242.002 83.1926 241.286 85.3228 241.286 88.1048C241.286 90.8868 241.985 93.0334 243.383 94.5484C244.817 96.0268 246.608 96.7659 248.759 96.7659H248.757Z" fill="#FAFAFF"/><path d="M286.313 73.0013C289.86 73.0013 292.728 74.11 294.914 76.3288C297.099 78.5121 298.193 81.5751 298.193 85.5177V102.682H290.667V86.5214C290.667 84.1976 290.076 82.4193 288.893 81.1878C287.711 79.9208 286.099 79.2867 284.055 79.2867C282.011 79.2867 280.328 79.9208 279.11 81.1878C277.927 82.4206 277.337 84.1976 277.337 86.5214V102.682H269.812V73.4227H277.337V77.0667C278.34 75.7997 279.612 74.8137 281.152 74.1087C282.729 73.3696 284.45 73 286.313 73V73.0013Z" fill="#FAFAFF"/><path d="M333.461 73V102.258H325.882V98.5607C324.915 99.8276 323.642 100.831 322.066 101.57C320.525 102.274 318.841 102.627 317.013 102.627C314.684 102.627 312.624 102.151 310.831 101.201C309.04 100.215 307.624 98.7898 306.585 96.9229C305.582 95.0218 305.08 92.7689 305.08 90.1628V73H312.605V89.1072C312.605 91.431 313.197 93.227 314.38 94.494C315.562 95.7268 317.174 96.3419 319.217 96.3419C321.259 96.3419 322.926 95.7255 324.109 94.494C325.291 93.227 325.882 91.431 325.882 89.1072V73H333.461Z" fill="#FAFAFF"/><path d="M352.283 103.211C349.846 103.211 347.66 102.788 345.724 101.944C343.789 101.064 342.248 99.8846 341.102 98.405C339.99 96.9267 339.381 95.2889 339.274 93.4941H346.853C346.996 94.6206 347.552 95.5534 348.52 96.2926C349.523 97.0317 350.758 97.4013 352.228 97.4013C353.698 97.4013 354.773 97.1191 355.56 96.5558C356.386 95.9926 356.797 95.2711 356.797 94.3902C356.797 93.4397 356.295 92.736 355.292 92.2778C354.325 91.7854 352.766 91.2564 350.615 90.6931C348.394 90.1653 346.566 89.6198 345.133 89.0566C343.736 88.4934 342.517 87.6302 341.478 86.4682C340.475 85.3063 339.973 83.7394 339.973 81.7675C339.973 80.1474 340.439 78.669 341.37 77.3312C342.338 75.9934 343.7 74.9365 345.455 74.1619C347.247 73.3873 349.344 73 351.745 73C355.292 73 358.123 73.8797 360.237 75.6402C362.352 77.3654 363.517 79.7069 363.732 82.6636H356.529C356.421 81.5017 355.919 80.5866 355.024 79.917C354.164 79.2133 352.998 78.8602 351.53 78.8602C350.168 78.8602 349.111 79.107 348.357 79.5993C347.642 80.0917 347.283 80.779 347.283 81.6586C347.283 82.6446 347.785 83.4015 348.788 83.9293C349.791 84.4216 351.35 84.933 353.465 85.4608C355.615 85.9885 357.389 86.5341 358.785 87.0973C360.183 87.6605 361.384 88.5402 362.387 89.7375C363.426 90.8994 363.964 92.4486 364 94.3852C364 96.0749 363.517 97.5886 362.548 98.9265C361.617 100.264 360.255 101.321 358.463 102.096C356.708 102.835 354.648 103.205 352.283 103.205V103.211Z" fill="#FAFAFF"/><path d="M101.842 49.5807C96.3871 26.2394 72.9473 11.6893 49.5909 17.1467C43.8859 18.4799 38.6095 20.8975 33.9054 24.3313C29.3642 27.647 25.5494 31.7635 22.5673 36.5652C19.5851 41.3682 17.5872 46.6126 16.6313 52.1522C15.6407 57.8906 15.8165 63.6919 17.1548 69.3957C19.802 80.7148 26.6952 90.3195 36.5641 96.4377C43.4612 100.73 51.3643 103 59.4188 103C64.5194 103 69.5892 102.104 74.4884 100.337C81.7011 97.7428 88.0772 93.249 92.9276 87.3412C101.71 76.6573 104.96 62.8951 101.843 49.582L101.842 49.5807ZM68.1675 96.4018C68.1675 96.4018 67.9429 96.457 67.8698 96.4762C67.8672 96.4762 67.8569 96.4801 67.8544 96.4801C58.1048 98.7052 48.0537 96.9985 39.527 91.7092C39.1138 91.4577 38.7135 91.1805 38.3234 90.8995C39.033 90.8456 39.7259 90.7609 40.3893 90.6467C46.7115 89.5714 52.7463 85.4613 58.3319 78.4281C64.2461 82.0981 71.4999 86.1658 74.6283 87.1243L74.8002 87.1782C75.053 87.2578 75.3135 87.3386 75.606 87.4451C77.3576 88.02 80.1677 88.9413 83.2897 89.0068C78.891 92.5548 73.6954 95.1084 68.1688 96.4018H68.1675ZM35.3156 79.1416H35.3297L35.4414 78.9517C36.8695 76.5149 39.4243 74.7608 42.6348 74.0127C46.3265 73.1504 50.2723 73.6778 53.5367 75.4563C48.957 81.0587 44.2106 84.3103 39.4243 85.1226C37.7113 85.4138 35.9277 85.4421 34.1197 85.2072C33.7886 83.1721 34.1903 81.1344 35.3169 79.1429L35.3156 79.1416ZM61.6528 73.9074C61.8286 73.6482 62.0134 73.3736 62.2071 73.0849C62.4484 72.7269 62.7037 72.3484 62.9732 71.9519L63.2503 71.54C66.5981 66.565 72.2018 58.2384 74.1714 56.1442C77.1869 52.926 83.4552 48.4065 91.5662 54.2938C94.4931 56.4137 96.183 59.4061 96.5911 63.1851C96.9106 66.1416 96.3357 68.6964 96.074 69.6549C95.3092 72.3971 94.2224 75.0739 92.8442 77.6133C91.9845 79.1981 90.8463 80.5403 89.4618 81.6028C88.9395 82.0031 88.4891 82.2803 88.126 82.424H88.1247C87.4446 82.6973 86.6888 82.9463 85.8817 83.167C82.9317 83.9587 79.7109 82.9001 77.3614 82.1276C76.9752 81.9993 76.6095 81.8876 76.2746 81.7862C74.4307 81.2204 68.4883 78.1304 61.6541 73.9087L61.6528 73.9074ZM94.819 49.7257C89.5375 45.8979 84.1443 44.8406 78.7883 46.5806C74.3588 48.0203 71.2022 51.0499 70.0525 52.2844C67.8082 54.6685 62.5818 62.4318 58.7656 68.101L58.2934 68.8016C58.0137 69.2174 57.7442 69.619 57.4902 70.0001C57.2797 70.3145 57.0783 70.6148 56.8884 70.8971C52.3369 68.2049 46.5639 67.3259 41.3645 68.5463C36.6424 69.6485 32.8224 72.3304 30.6076 76.0991C29.5939 77.8314 28.9241 79.6151 28.6123 81.4128C24.5857 75.7398 22.199 69.0826 21.6973 62.0995C21.116 54.0295 23.2512 45.794 27.7128 38.9058C32.1757 32.0163 38.8225 26.6936 46.4305 23.9181C50.6893 22.3744 55.0919 21.5904 59.5163 21.5904C67.9173 21.5904 76.2155 24.4622 82.8816 29.6783C86.2115 32.2832 89.0576 35.3937 91.3429 38.9225C93.7078 42.5757 95.4131 46.5934 96.4102 50.8613C96.4256 50.9306 96.441 51.0012 96.4564 51.0705C95.9469 50.5944 95.4054 50.1491 94.8216 49.7244L94.819 49.7257Z" fill="#FAFAFF"/></svg></a>
+    <span class="topbar-tag">Investor Screen</span>
+  </div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="wrap">
+    <span class="s-eyebrow reveal">{{HERO_EYEBROW}}</span>
+    <!-- HERO_EYEBROW: e.g. "Investment enquiry", "Cold outreach" -->
+    <h1 class="display reveal">{{HERO_TITLE_LINE1}}<br><em>{{HERO_TITLE_LINE2}}</em></h1>
+    <!-- HERO_TITLE: Entity name split across two lines. Line 2 renders in purple.
+         For a person + company: line1="Marc Ender-Yaron" line2="KLMB GmbH"
+         For just a company: line1="Company" line2="Name" -->
+    <p class="lede reveal">{{HERO_LEDE}}</p>
+    <!-- HERO_LEDE: One sentence — who they are and what they claimed to offer. No verdict here. -->
+    <div class="hero-meta reveal">
+      <div>
+        <div class="m-label">Date</div>
+        <div class="m-value">{{DATE}}</div>
+      </div>
+      <div>
+        <div class="m-label">Contact</div>
+        <div class="m-value">{{CONTACT_NAME}}</div>
+      </div>
+      <div>
+        <div class="m-label">Verdict</div>
+        <div class="m-value" style="margin-top:8px">
+          <!-- VERDICT_CLASS: verdict-red | verdict-amber | verdict-green -->
+          <span class="verdict-badge {{VERDICT_CLASS}}">
+            <span class="vdot"></span>{{VERDICT_LABEL}}
+          </span>
+        </div>
+      </div>
+      <div>
+        <div class="m-label">Lumonus Fit</div>
+        <div class="m-value" style="margin-top:8px">
+          <span class="fit-badge">{{FIT_LABEL}}</span>
+          <!-- FIT_LABEL: "Poor fit" | "Possible fit" | "Strong fit" -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Entity snapshot -->
+<section class="s" id="snapshot">
+  <div class="wrap">
+    <p class="s-eyebrow reveal">Entity overview</p>
+    <h2 class="reveal">{{SNAPSHOT_HEADING}}</h2>
+    <!-- SNAPSHOT_HEADING: e.g. "Who they are", "About the enquirer" -->
+    <div class="snapshot-grid">
+      <div class="snapshot-prose reveal">
+        <p>{{SNAPSHOT_PARA_1}}</p>
+        <p>{{SNAPSHOT_PARA_2}}</p>
+        <!-- 2–3 paragraphs: who the individuals are, what the entity claims to do, notable context -->
+      </div>
+      <div class="reveal">
+        <div class="stat-row">
+          <!-- 4 stats: e.g. registration status, jurisdiction, founded, employees / AUM claimed -->
+          <div class="stat">
+            <div class="v">{{STAT_1_VALUE}}</div>
+            <div class="l">{{STAT_1_LABEL}}</div>
+          </div>
+          <div class="stat">
+            <div class="v">{{STAT_2_VALUE}}</div>
+            <div class="l">{{STAT_2_LABEL}}</div>
+          </div>
+          <div class="stat">
+            <div class="v">{{STAT_3_VALUE}}</div>
+            <div class="l">{{STAT_3_LABEL}}</div>
+          </div>
+          <div class="stat">
+            <div class="v">{{STAT_4_VALUE}}</div>
+            <div class="l">{{STAT_4_LABEL}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What they claimed -->
+<section class="s tinted" id="claim">
+  <div class="wrap">
+    <p class="s-eyebrow reveal">What they claimed</p>
+    <h2 class="reveal">The enquiry</h2>
+    <p class="s-lede reveal">{{CLAIM_LEDE}}</p>
+    <!-- CLAIM_LEDE: 1–2 sentences framing the outreach — what they said they could offer, how they made contact. -->
+    <div class="proposal-banner reveal">
+      <div class="pb-label">{{BANNER_ATTRIBUTION}}</div>
+      <!-- BANNER_ATTRIBUTION: e.g. "Marc Ender-Yaron · Website contact form · 12 May 2026" -->
+      <blockquote>{{BANNER_QUOTE}}</blockquote>
+      <!-- BANNER_QUOTE: Key quote from the enquiry. Wrap notable claims in <strong> to highlight in purple. -->
+    </div>
+  </div>
+</section>
+
+<!-- Key findings (4 tiles — pick the 4 most impactful layer results) -->
+<section class="s" id="findings">
+  <div class="wrap">
+    <p class="s-eyebrow reveal">Research findings</p>
+    <h2 class="reveal">{{FINDINGS_HEADING}}</h2>
+    <!-- FINDINGS_HEADING: e.g. "What the research found", "Seven layers, four standout findings" -->
+    <p class="s-lede reveal">{{FINDINGS_LEDE}}</p>
+    <!-- FINDINGS_LEDE: 1 sentence overview — e.g. "Four findings across 7 research layers determined this verdict." -->
+    <div class="findings-grid">
+      <!-- 4 tiles. Add class finding-ok, finding-warn, or finding-fail to match result.
+           Icons: ph-user-circle-check, ph-envelope-simple-x, ph-building-office, ph-chart-line-down,
+                  ph-magnifying-glass, ph-warning, ph-shield-slash, ph-check-circle, ph-x-circle -->
+      <div class="finding-tile {{TILE_1_STATUS}} reveal">
+        <i class="ph ph-{{TILE_1_ICON}} ic"></i>
+        <span class="ft-tag">{{TILE_1_LAYER}}</span>
+        <!-- TILE_1_LAYER: e.g. "Individual identity", "Contact channels", "Entity registration", "Track record" -->
+        <h4>{{TILE_1_TITLE}}</h4>
+        <p>{{TILE_1_BODY}}</p>
+        <!-- Optionally add a source link: <a href="...">Source</a> -->
+      </div>
+      <div class="finding-tile {{TILE_2_STATUS}} reveal">
+        <i class="ph ph-{{TILE_2_ICON}} ic"></i>
+        <span class="ft-tag">{{TILE_2_LAYER}}</span>
+        <h4>{{TILE_2_TITLE}}</h4>
+        <p>{{TILE_2_BODY}}</p>
+      </div>
+      <div class="finding-tile {{TILE_3_STATUS}} reveal">
+        <i class="ph ph-{{TILE_3_ICON}} ic"></i>
+        <span class="ft-tag">{{TILE_3_LAYER}}</span>
+        <h4>{{TILE_3_TITLE}}</h4>
+        <p>{{TILE_3_BODY}}</p>
+      </div>
+      <div class="finding-tile {{TILE_4_STATUS}} reveal">
+        <i class="ph ph-{{TILE_4_ICON}} ic"></i>
+        <span class="ft-tag">{{TILE_4_LAYER}}</span>
+        <h4>{{TILE_4_TITLE}}</h4>
+        <p>{{TILE_4_BODY}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Red flags -->
+<section class="s tinted" id="flags">
+  <div class="wrap">
+    <p class="s-eyebrow reveal">Due diligence</p>
+    <h2 class="reveal">Red flags</h2>
+    <p class="s-lede reveal">{{FLAGS_LEDE}}</p>
+    <!-- FLAGS_LEDE: e.g. "Five specific signals that drove the Red verdict." or "No red flags identified — entity appears clean." -->
+
+    <!-- IF red flags exist, use this block: -->
+    <div class="flags reveal">
+      <div class="flag">
+        <div class="f-num">F1</div>
+        <div class="f-body">
+          <h4>{{FLAG_1_TITLE}}</h4>
+          <p>{{FLAG_1_BODY}}</p>
+        </div>
+      </div>
+      <div class="flag">
+        <div class="f-num">F2</div>
+        <div class="f-body">
+          <h4>{{FLAG_2_TITLE}}</h4>
+          <p>{{FLAG_2_BODY}}</p>
+        </div>
+      </div>
+      <div class="flag">
+        <div class="f-num">F3</div>
+        <div class="f-body">
+          <h4>{{FLAG_3_TITLE}}</h4>
+          <p>{{FLAG_3_BODY}}</p>
+        </div>
+      </div>
+      <!-- Add or remove flag blocks as needed. Minimum 1, maximum ~6 -->
+    </div>
+
+    <!-- IF no red flags, replace the .flags block with this instead: -->
+    <!-- <div class="flags-clear reveal"><i class="ph ph-check-circle"></i>No red flags identified across all 7 research layers. Entity and individuals are consistent, verifiable, and have no fraud or regulatory history.</div> -->
+
+    <!-- Cross-check verification table -->
+    <div class="reveal" style="margin-top:56px">
+      <p class="s-eyebrow" style="margin-bottom:12px">Cross-check log</p>
+      <table class="xcheck-table">
+        <thead>
+          <tr>
+            <th>Claim</th>
+            <th>Source 1</th>
+            <th>Source 2</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Add one row per significant claim that was verified or checked. -->
+          <!-- STATUS classes: status-ok (✅ Verified), status-warn (⚠️ Single source), status-fail (❌ Unverified), status-none (— No results) -->
+          <tr>
+            <td>{{CLAIM_1}}</td>
+            <td><a href="{{SOURCE_1A_URL}}">{{SOURCE_1A_LABEL}}</a></td>
+            <td><a href="{{SOURCE_1B_URL}}">{{SOURCE_1B_LABEL}}</a></td>
+            <td class="{{STATUS_1_CLASS}}">{{STATUS_1_TEXT}}</td>
+          </tr>
+          <tr>
+            <td>{{CLAIM_2}}</td>
+            <td><a href="{{SOURCE_2A_URL}}">{{SOURCE_2A_LABEL}}</a></td>
+            <td><a href="{{SOURCE_2B_URL}}">{{SOURCE_2B_LABEL}}</a></td>
+            <td class="{{STATUS_2_CLASS}}">{{STATUS_2_TEXT}}</td>
+          </tr>
+          <tr>
+            <td>{{CLAIM_3}}</td>
+            <td><a href="{{SOURCE_3A_URL}}">{{SOURCE_3A_LABEL}}</a></td>
+            <td>—</td>
+            <td class="{{STATUS_3_CLASS}}">{{STATUS_3_TEXT}}</td>
+          </tr>
+          <!-- Add rows as needed. Every significant claim in the report should have a row. -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Recommendation -->
+<div class="cta-section" id="recommendation">
+  <div class="wrap">
+    <div class="cta-inner reveal">
+      <p class="s-eyebrow" style="color:var(--purple)">Recommendation</p>
+      <h2>{{RECOMMENDATION_HEADING}}</h2>
+      <!-- RECOMMENDATION_HEADING: e.g. "Do not engage", "Request verification before any call", "Worth a 30-minute discovery call" -->
+      <p>{{RECOMMENDATION_BODY_1}}</p>
+      <p>{{RECOMMENDATION_BODY_2}}</p>
+      <!-- 2 short paragraphs: (1) what to do, (2) what specifically to ask/request if engaging -->
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <p class="footer-brand">Lumonus — Internal</p>
+    <span>Prepared {{DATE}} · Not for external distribution</span>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target) } })
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
