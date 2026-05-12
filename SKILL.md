@@ -314,7 +314,7 @@ After delivering the structured text report, generate a complete HTML brief usin
 1. Read `assets/screen-template.html`.
 2. Fill every `{{PLACEHOLDER}}` with real content from the research. Rules below.
 3. Remove all HTML `<!-- comment -->` blocks from the output — they're instructions, not content.
-4. Save the output as `[entity-name-slug]-screen.html` in `/Users/samuel.lam/Downloads/` (or the project working directory if more appropriate).
+4. Save the output as `[entity-name-slug]-screen.html` in `~/Downloads/` (or the project working directory if more appropriate).
 5. Tell the user where it was saved and that it's visible in the preview panel.
 
 ### Filling the placeholders
