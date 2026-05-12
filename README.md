@@ -51,6 +51,31 @@ Then paste the full enquiry text. The skill will extract the key details and run
 
 Every significant claim is verified by 2+ independent sources. Findings are reported per layer with live links — no aggregated verdicts that hide mixed findings.
 
+## Lumonus and the radiation oncology ecosystem
+
+Lumonus is an agent-native radiation oncology intelligence platform. Understanding the ecosystem helps interpret Layer 7 fit assessments.
+
+**What Lumonus does:** Orchestrates the full patient journey — referral intake, consult prep, treatment planning, revenue cycle, and follow-up — for radiation oncology departments inside hospitals and cancer centres. Primary market is US Integrated Delivery Networks (IDNs) and community hospital systems, with growing operations in Australia.
+
+**The ecosystem — relevant companies and categories:**
+
+| Category | Examples | Relevance to Lumonus |
+|---|---|---|
+| Oncology Information Systems (OIS) | Varian ARIA, Elekta Mosaiq | Core workflow systems Lumonus integrates with |
+| Treatment Planning Systems (TPS) | RaySearch RayStation, Varian Eclipse, Elekta Monaco | Downstream recipients of Lumonus plan directives |
+| Linac manufacturers | Varian (Siemens Healthineers), Elekta, Accuray, ViewRay | Hardware vendors in the care pathway |
+| EHR / hospital systems | Epic, Oracle Health (Cerner) | Upstream referral and patient record sources |
+| Revenue cycle / billing | R1 RCM, Omega Healthcare, nThrive | Adjacent to Lumonus's RCM automation capabilities |
+| Imaging / radiology | Philips, GE HealthCare, Siemens Healthineers | PACS/imaging systems in the diagnostic pathway |
+| AI oncology platforms | Various health tech startups | Potential partners, competitors, or acquirers |
+| Health system operators | IDNs, community hospitals, cancer centre networks | Lumonus's buyers — channel partners often have relationships here |
+
+**Relevant investors** are typically health tech VCs, MedTech growth funds, or AI-focused funds with demonstrated healthcare portfolios. Lumonus raises equity, not debt. Geographic focus: US and Australia.
+
+**Red flags for fit:** investors or partners with no health tech history, no oncology or clinical software exposure, wrong geography, or proposing structures (loans, licensing fees, exclusivity) incompatible with a venture-backed SaaS model.
+
+---
+
 ## Why this exists
 
 Most due diligence tools (Keye, CENTRL, ToltIQ, Vantager) solve buyside DD — screening opportunities you're actively pursuing. None address the reverse: a company screening unsolicited inbound outreach for legitimacy before committing team time to a call. Cold enquiries from unverified parties — whether investors, distributors, or partners — carry real risk: wasted time, data exposure, and reputational harm from engaging bad actors.
