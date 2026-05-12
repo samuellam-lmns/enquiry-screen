@@ -1,18 +1,22 @@
 # enquiry-screen
 
-Screens inbound investment enquiries for legitimacy and Lumonus fit before any team member invests time engaging.
+Screens any inbound cold enquiry — investors, distribution partners, channel partners, technology partners, or anyone proposing a formal relationship — for legitimacy and fit before any team member invests time engaging.
 
 ## What it does
 
-Takes a raw inbound enquiry (name, company, email, phone, message) and runs a **7-layer research protocol** that cross-checks every significant claim against at least two independent sources. Outputs a structured verdict with all sources cited.
+Takes a raw inbound enquiry (name, company, email, phone, message) and runs a **7-layer research protocol** that cross-checks every significant claim against at least two independent sources. Outputs a structured verdict with all sources cited and an HTML brief.
 
 ## When to use it
 
-Any time Lumonus receives a cold outreach from a claimed investor — VC, private equity, family office, angel, or anyone else offering capital. Especially useful for:
+Any time you receive unsolicited outreach proposing a business relationship. Especially useful for:
 
-- Website contact form submissions from unknown parties
-- Cold LinkedIn messages or emails claiming investment interest
-- Referrals from intermediaries you haven't verified yet
+- **Investors** — VC, private equity, family office, angel, or anyone offering capital
+- **Distribution partners** — claiming to sell into your target market or customer base
+- **Channel partners** — resellers, referral partners, or intermediaries proposing a commercial arrangement
+- **Technology partners** — platforms or vendors proposing an integration or co-sell
+- **Strategic alliances** — anyone proposing a formal partnership, joint venture, or collaboration
+
+Common sources: website contact forms, cold LinkedIn messages, cold emails, intermediary referrals.
 
 ## The 7 layers
 
@@ -22,9 +26,9 @@ Any time Lumonus receives a cold outreach from a claimed investor — VC, privat
 | 2. Contact channels | Do the email/phone match a legitimate firm? |
 | 3. Entity verification | Is the company properly registered? |
 | 4. Registered address | Physical presence or mail-drop? |
-| 5. Track record | Any disclosed deals or portfolio history? |
+| 5. Track record | Any disclosed deals, clients, or partnership history? |
 | 6. Fraud/regulatory check | BaFin, FCA, SEC, ASIC, scam databases |
-| 7. Lumonus fit | Right sector, stage, instrument, geography? |
+| 7. Lumonus fit | Right sector, stage, model, and geography? |
 
 ## Verdict
 
@@ -49,4 +53,4 @@ Every significant claim is verified by 2+ independent sources. Findings are repo
 
 ## Why this exists
 
-Existing due diligence tools (Keye, CENTRL, ToltIQ, Vantager) all solve buyside DD — screening deals you want to invest in. None address the reverse: a startup screening inbound investor outreach for legitimacy before committing team time to a call.
+Most due diligence tools (Keye, CENTRL, ToltIQ, Vantager) solve buyside DD — screening opportunities you're actively pursuing. None address the reverse: a company screening unsolicited inbound outreach for legitimacy before committing team time to a call. Cold enquiries from unverified parties — whether investors, distributors, or partners — carry real risk: wasted time, data exposure, and reputational harm from engaging bad actors.
