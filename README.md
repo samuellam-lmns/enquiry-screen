@@ -68,7 +68,7 @@ Lumonus is an agent-native radiation oncology intelligence platform. Understandi
 | Revenue cycle / billing | R1 RCM, Omega Healthcare, nThrive | Adjacent to Lumonus's RCM automation capabilities |
 | Imaging / radiology | Philips, GE HealthCare, Siemens Healthineers | PACS/imaging systems in the diagnostic pathway |
 | RO automation & AI platforms | Radformation, Medlever, Fuse Oncology | Direct adjacents — potential partners, competitors, or integration targets |
-| RO service providers | AOS (CTSI) - Advanced Oncology Solutions | Managed RO service operators who deploy and operate RO departments — strong channel partner candidates |
+| RO service providers | AOS (CTSI) - Advanced Oncology Solutions | RO dosimetry services |
 | Broader AI oncology | Various health tech startups | Potential partners, competitors, or acquirers |
 | Health system operators | IDNs, community hospitals, cancer centre networks | Lumonus's buyers — channel partners often have relationships here |
 
