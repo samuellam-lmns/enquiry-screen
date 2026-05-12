@@ -67,7 +67,9 @@ Lumonus is an agent-native radiation oncology intelligence platform. Understandi
 | EHR / hospital systems | Epic, Oracle Health (Cerner) | Upstream referral and patient record sources |
 | Revenue cycle / billing | R1 RCM, Omega Healthcare, nThrive | Adjacent to Lumonus's RCM automation capabilities |
 | Imaging / radiology | Philips, GE HealthCare, Siemens Healthineers | PACS/imaging systems in the diagnostic pathway |
-| AI oncology platforms | Various health tech startups | Potential partners, competitors, or acquirers |
+| RO automation & AI platforms | Radformation, Medlever, Fuse Oncology | Direct adjacents — potential partners, competitors, or integration targets |
+| RO service providers | AOS (Australian Oncology Services), CTSI (Cancer Treatment Services International) | Managed RO service operators who deploy and operate RO departments — strong channel partner candidates |
+| Broader AI oncology | Various health tech startups | Potential partners, competitors, or acquirers |
 | Health system operators | IDNs, community hospitals, cancer centre networks | Lumonus's buyers — channel partners often have relationships here |
 
 **Relevant investors** are typically health tech VCs, MedTech growth funds, or AI-focused funds with demonstrated healthcare portfolios. Lumonus raises equity, not debt. Geographic focus: US and Australia.
